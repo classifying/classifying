@@ -1,0 +1,31 @@
+// Display styling
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.table {
+    display: table;
+}
+
+.show {
+    display: block;
+}
+
+.hide,
+.hidden {
+    display: none;
+}
+
+.initial {
+    display: initial;
+}
+
+.inherit,
+.child-behaver {
+    display: inherit;
+}
