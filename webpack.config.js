@@ -54,6 +54,11 @@ module.exports = {
                     to: 'version.json',
                     force: true
                 },
+                {
+                    from: 'parser.json',
+                    to: 'parser.json',
+                    force: true
+                },
 			],
 			options: {
 				concurrency: 100,
