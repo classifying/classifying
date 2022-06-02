@@ -69,19 +69,8 @@ const classParser = (style: string) => {
     } else {
         return ''
     }
-
-    /*switch (style[0]) {
-        case 'p':
-            return `padding: ${style[1]}`
-        case 'px':
-            return `padding: ${style[1]} 0${measureUnit} ${style[1]} 0${measureUnit}`
-        case 'py':
-            return `padding: 0${measureUnit} ${style[1]} 0${measureUnit} ${style[1]}`
-    }*/
 }
 
-// https://regexr.com/6mqhv
-// https://regexr.com/6mqjo
 const parserRequest = (_test: string) => {
     const measureRegex: RegExp = /(\w+)-\[(\w*)?(0\.\w+)?\]$/g
     const colorRegex: RegExp = /(\w+)-\[(\#(\d{6})?(a|b|c|d|e|f{6})?)?(rgb\((\d*){1,3},(\d*){1,3},(\d*){1,3}\))?\]$/g
