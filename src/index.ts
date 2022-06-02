@@ -49,30 +49,58 @@ const styleEnhancer = (_class: string) => {
 
     const tester = /(\w+)-\d+(\w*)(\%)*/g
 
-    if (tester.test(_class)) {
-        style = classParser(_class.split('-'))
+    if (!tester.test(_class)) {
+        style = classParser(_class)
     }
 
     return style
 }
 
-const classParser = (style: string[]) => {
+const classParser = (style: string) => {
     // Use a JSON to handle default module creation
+    const moduleParser: object = PARSER
 
-    const splittedStyle = style[1].split(/\d/)
-    const measureUnit = splittedStyle[splittedStyle.length - 1]
+    //const splittedStyle = style[1].split(/\d/)
+    //const measureUnit = splittedStyle[splittedStyle.length - 1]
 
-    //console.log(parser[style[0]])
-    console.log(PARSER['p'])
+    let parsed:any = moduleParser[style.split('-')[0] as keyof object]
+    if (parsed && parsed !== undefined) {
+        return parsed + ' ' +  parserRequest(style)
+    } else {
+        return ''
+    }
 
-    switch (style[0]) {
+    /*switch (style[0]) {
         case 'p':
             return `padding: ${style[1]}`
         case 'px':
             return `padding: ${style[1]} 0${measureUnit} ${style[1]} 0${measureUnit}`
         case 'py':
             return `padding: 0${measureUnit} ${style[1]} 0${measureUnit} ${style[1]}`
+    }*/
+}
+
+// https://regexr.com/6mqhv
+// https://regexr.com/6mqjo
+const parserRequest = (_test: string) => {
+    const measureRegex: RegExp = /(\w+)-\[(\w*)?(0\.\w+)?\]$/g
+    const colorRegex: RegExp = /(\w+)-\[(\#(\d{6})?(a|b|c|d|e|f{6})?)?(rgb\((\d*){1,3},(\d*){1,3},(\d*){1,3}\))?\]$/g
+    const exadecimalColorRegex: RegExp = /(\w+)-(\[(#(\w+))?\])$/g
+    let _value: string = ''
+
+    switch (true) {
+        case measureRegex.test(_test):
+        case colorRegex.test(_test):
+        case exadecimalColorRegex.test(_test):
+            _value = _test.split('-')[1].replace(/\[/, '')
+                                        .replace(/\]/, '')
+            break;
+        default:
+            _value = _test
+            break;
     }
+
+    return _value
 }
 
 ApplyClassifying ()
