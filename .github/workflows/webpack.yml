@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dist" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dist" ]
 
 jobs:
   build:
@@ -26,4 +26,3 @@ jobs:
       run: |
         npm ci
         npm run dist
-

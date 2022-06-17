@@ -13,16 +13,20 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm ci
-          name: Run clean install
-      - run:
-          command: npm run test
-          name: Run tests
-      - run:
-          command: npm run build
-          name: Build app
+        pkg-manager: npm
+      - when:
+          condition:
+            equal: [ dist, << pipeline.git.branch >> ]
+          steps:
+            - run:
+                command: npm ci
+                name: Run clean install
+            - run:
+                command: npm run test
+                name: Run tests
+            - run:
+                command: npm run build
+                name: Build app
 
 workflows:
   build_test_deploy:
