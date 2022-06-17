@@ -15,22 +15,16 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          command: npm ci
+          name: Run clean install
+      - run:
           command: npm run test
           name: Run tests
       - run:
           command: npm run build
           name: Build app
-      - persist_to_workspace:
-          root: ~/deploy
-          paths:
 
 workflows:
-  build_test_deploy: # this can be any name you choose
+  build_test_deploy:
     jobs:
       - build_and_test
-      # - deploy:  # DEPLOY HERE REQUIRES A DEPLOY JOB
-      #     requires:
-      #       - build_and_test # only deploy if the build_and_test job has completed
-      #     filters:
-      #       branches:
-      #         only: dev # only deploy when on dev
