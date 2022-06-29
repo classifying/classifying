@@ -1,11 +1,11 @@
 {
     "p": "padding:",
-    "px": "padding:",
-    "py": "padding:",
+    "px": "padding: !val 0!um",
+    "py": "padding: 0!um !val",
     "bg": "background:",
     "m": "margin:",
-    "mx": "margin:",
-    "my": "margin:",
+    "mx": "margin: !val 0!um",
+    "my": "margin: 0!um !val",
     "bs": "border: 1px solid",
     "bd": "border: 1px dotted"
 }
