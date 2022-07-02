@@ -10,6 +10,10 @@
     "m": "margin",
     "mx": "[m] !val 0!um",
     "my": "[m] 0!um !val",
+    "mt": "[m]-top",
+    "mr": "[m]-right",
+    "mb": "[m]-bottom",
+    "ml": "[m]-right",
     "bs": "border: 1px solid",
     "bd": "border: 1px dotted",
     "justify" : ""

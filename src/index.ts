@@ -85,21 +85,31 @@ const classToStyle = (_singleStyle: string) => {
     /*^
      * px: [p] -> px: padding as [p] is a key for padding
      */
-    if (/ (\d*\w*.*)/g.test(parsed)) {
-        console.log(parsed)
-        const _pas: Array<string> = parsed.split(' ')
+    if (parsed != undefined && /(\d*\w*.*)/.test(parsed)) {
+        let container:string = ''
+        let _pas: Array<string> = []
+
+        if (parsed.includes(' ')){
+            _pas = parsed.split(' ')
+            container = ': '
+        } else {
+            _pas = parsed.split('-')
+            container = '-'
+        }
 
         // Array of values, first being the needed key -> [m] | [p] | [...]
         _pas.forEach(_pa => {
             if (/\[(\w*)\]/g.test(_pa)) {
-                parsed = (moduleParser[_pa.replace(/\[/, '')
-                                            .replace(/\]/, '') as keyof object
-                                        ]
-                            )
+                parsed=(moduleParser[
+                                        _pa.replace(/\[/, '')
+                                        .replace(/\]/, '') as keyof object
+                                    ]
+                        )
+                _pas.shift()
+                parsed += ( container + _pas.join(' ') )
             }
         })
     }
-    console.log(parsed)
 
 
     if (parsed && parsed !== undefined) {
