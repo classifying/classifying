@@ -1,11 +1,16 @@
 {
-    "p": "padding:",
-    "px": "padding: !val 0!um",
-    "py": "padding: 0!um !val",
-    "bg": "background:",
-    "m": "margin:",
-    "mx": "margin: !val 0!um",
-    "my": "margin: 0!um !val",
+    "p": "padding",
+    "px": "[p] !val 0!um",
+    "py": "[p] 0!um !val",
+    "pt": "[p]-top",
+    "pr": "[p]-right",
+    "pb": "[p]-bottom",
+    "pl": "[p]-right",
+    "bg": "background",
+    "m": "margin",
+    "mx": "[m] !val 0!um",
+    "my": "[m] 0!um !val",
     "bs": "border: 1px solid",
-    "bd": "border: 1px dotted"
+    "bd": "border: 1px dotted",
+    "justify" : ""
 }

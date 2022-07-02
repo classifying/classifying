@@ -81,6 +81,26 @@ const classToStyle = (_singleStyle: string) => {
     const moduleParser: object = PARSER
     let parsed:any = moduleParser[_singleStyle.split('-')[0] as keyof object]
 
+    // If the value of a key is another key, use the value as key for another key:
+    /*^
+     * px: [p] -> px: padding as [p] is a key for padding
+     */
+    if (/ (\d*\w*.*)/g.test(parsed)) {
+        console.log(parsed)
+        const _pas: Array<string> = parsed.split(' ')
+
+        // Array of values, first being the needed key -> [m] | [p] | [...]
+        _pas.forEach(_pa => {
+            if (/\[(\w*)\]/g.test(_pa)) {
+                parsed = (moduleParser[_pa.replace(/\[/, '')
+                                            .replace(/\]/, '') as keyof object
+                                        ]
+                            )
+            }
+        })
+    }
+    console.log(parsed)
+
 
     if (parsed && parsed !== undefined) {
         // style element has to contain both the value and the unit of measure for being a valid input
@@ -91,7 +111,7 @@ const classToStyle = (_singleStyle: string) => {
             return parsed.replace('!val', value).replace('!um', um)
         }
 
-        return parsed + ' ' +  parserRequest(_singleStyle)
+        return parsed + ': ' +  parserRequest(_singleStyle)
     } else {
         return ''
     }
@@ -115,7 +135,6 @@ const parserRequest = (_test: string) => {
             break;
     }
 
-    console.log('_value ' + _value)
     return _value
 }
 
