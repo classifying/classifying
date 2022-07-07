@@ -18,7 +18,7 @@ jobs:
           command: npm ci
           name: Run clean install
       - run:
-          command: npm run test
+          command: npm test
           name: Run tests
       - run:
           command: npm run build

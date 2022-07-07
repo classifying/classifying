@@ -7,13 +7,15 @@
     "serve": "webpack-dev-server --config webpack.config.js --hot",
     "build": "webpack",
     "dist": "webpack --config webpack.prod.js --mode production --progress",
-    "test": "mocha"
+    "test": "jest --verbose --coverage"
   },
   "author": "@noxterr",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^28.1.4",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "jest": "^28.1.2",
     "mini-css-extract-plugin": "^2.6.0",
     "mocha": "^10.0.0",
     "promise": "^8.1.0",
